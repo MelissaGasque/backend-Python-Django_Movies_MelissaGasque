@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from users.models import User
-from rest_framework.views import status
+# from rest_framework.views import status
 
 
 class UserSerializer(serializers.Serializer):
@@ -14,24 +14,26 @@ class UserSerializer(serializers.Serializer):
     is_employee = serializers.BooleanField(default=False)
     is_superuser = serializers.BooleanField(default=False, read_only=True)
 
+    # def validate(self, validated_data):
+    #     username = validated_data.get('username')
+    #     email = validated_data.get('email')
+
+    #     if User.objects.filter(username=username).exists():
+    #         raise serializers.ValidationError("Username already taken.")
+
+    #     if User.objects.filter(email=email).exists():
+    #         raise serializers.ValidationError("Email already registered.")
+
+    #     return validated_data
+
     def create(self, validated_data):
-        # username = validated_data.get('username')
-        # email = validated_data.get('email')
-
-        # if User.objects.filter(username=username).exists():
-        #     raise serializers.ValidationError(
-        #         "username already taken.",
-        #         status.HTTP_400_BAD_REQUEST
-        #     )
-
-        # if User.objects.filter(email=email).exists():
-        #     raise serializers.ValidationError(
-        #         "email already registered.",
-        #         status.HTTP_400_BAD_REQUEST
-        #     )
-
         if validated_data['is_employee']:
             user = User.objects.create_superuser(**validated_data)
         else:
             user = User.objects.create_user(**validated_data)
         return user
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=150)
+    password = serializers.CharField(max_length=128)

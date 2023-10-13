@@ -1,5 +1,5 @@
 from rest_framework.views import APIView, status, Request, Response
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer  # LoginSerializer
 from .models import User
 
 
