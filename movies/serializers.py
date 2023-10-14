@@ -13,7 +13,7 @@ class MovieSerializer(serializers.Serializer):
     )
     synopsis = serializers.CharField(allow_blank=True, default="")
     added_by = serializers.CharField(read_only=True, source='user.email')
-    user = UserSerializer(),
+    user = UserSerializer(read_only=True),
 
     def create(self, validated_data):
         movie = Movie.objects.create(**validated_data)
