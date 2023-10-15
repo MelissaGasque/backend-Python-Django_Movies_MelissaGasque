@@ -8,3 +8,9 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50)
     birthdate = models.DateField(blank=True, null=True, default=None)
     is_employee = models.BooleanField(default=False)
+
+    movie_order = models.ManyToManyField(
+        "users.User",
+        related_name="users",
+        through="movies_orders.MovieOrder",
+    )

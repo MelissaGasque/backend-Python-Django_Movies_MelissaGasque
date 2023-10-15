@@ -11,13 +11,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('movies', '0001_initial'),
+        ('movies_orders', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='movie',
+            model_name='movieorder',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='movies', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_movie_orders', to=settings.AUTH_USER_MODEL),
         ),
     ]
