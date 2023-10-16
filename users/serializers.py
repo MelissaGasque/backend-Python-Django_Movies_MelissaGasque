@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from users.models import User
 from rest_framework.validators import UniqueValidator
+from django.contrib.auth.hashers import make_password
 
 
 class UserSerializer(serializers.Serializer):
@@ -36,6 +37,14 @@ class UserSerializer(serializers.Serializer):
         else:
             user = User.objects.create_user(**validated_data)
         return user
+    
+    def update(self, instance: User, validated_data: dict):
+        for key, value in validated_data.items():
+            if key == "password":
+                setattr(instance, key, make_password(value))
+        instance.save()
+
+        return instance
 
 
 class LoginSerializer(serializers.Serializer):
