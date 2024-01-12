@@ -1,4 +1,44 @@
-# M5 - Kenzie Buster
+# Kenzie Buster
+A linguagem utilizada é o Python e o framework Django. O Banco de dados utilizado é o sqlite3.    
+Essa API tem o intuito de fazer uma gestão de vendas de filmes. A aplicação gerencia usuários, filmes e compras, incluindo autenticação e permissões de rotas para diferentes tipos de usuário.   
+
+| Rotas                        | Verbo HTTP | Objetivo                         |
+|------------------------------|------------|----------------------------------|
+| /api/users/                  | POST       | Criação de usuário               |
+| /api/users/login/            | POST       | Autenticação do usuário          |
+| /api/users/<int:user_id>/    | GET        | Busca de usuário por ID          |
+| /api/users/<int:user_id>/    | PATCH      | Atualizar usuário                |
+| /api/movies/                 | POST       | Criação de filme                 |
+| /api/movies/                 | GET        | Listagem de filme                |
+| /api/movies/<int:movie_id>/  | GET        | Busca de filme por ID            |
+| /api/movies/<int:movie_id>/  | DELETE     | Deleção de filme                 |
+| /api/movies/<int:movie_id>/orders/ | POST  | Criação de pedido   
+
+## Configuração do Ambiente Virtual (Opcional, mas recomendado)
+### Crie um ambiente virtual
+```python -m venv venv```
+
+### Ative o ambiente virtual
+#### No Windows
+```venv\Scripts\activate```
+#### No Linux/Mac
+```source venv/bin/activate```
+
+
+## Instalar o Django:
+```pip install django```
+
+## Instalação das Dependencias
+```pip install -r requirements.txt```
+
+## Migrações e Aplicações
+### Execute as migrações
+```python manage.py makemigrations```
+```python manage.py migrate```
+
+### Inicie o servidor de desenvolvimento
+```python manage.py runserver```
+
 
 ## Preparando ambiente para execução dos testes
 
